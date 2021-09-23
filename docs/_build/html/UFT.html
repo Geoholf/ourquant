@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UFT 2.0 &mdash; Lite v0.1 文档</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Lite
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="hello.html">测试</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Lite</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>UFT 2.0</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/UFT.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="uft-2-0">
+<h1>UFT 2.0<a class="headerlink" href="#uft-2-0" title="永久链接至标题"></a></h1>
+<p>#高性能解决方案</p>
+<div class="section" id="id1">
+<h2>一、UFT 2.0 结构介绍<a class="headerlink" href="#id1" title="永久链接至标题"></a></h2>
+<div class="section" id="id2">
+<h3>1. 1 产生背景<a class="headerlink" href="#id2" title="永久链接至标题"></a></h3>
+<p>其原始模型是经纪事业部的VIP系统，VIP是调用数据库的接口进行交易，这样和数据库的频繁交易，势必对性能有影响。</p>
+<p>到了期货UFT1.0 、资管UFT1.1 阶段，行程了小型的内存数据库。进一步发展到证券UFT2.0 。</p>
+<p>由于内存不能持久化，宕机之后所有的数据都会荡然无存，为了保证其高可用性，就开发了恒生UFT2.0</p>
+<p><img alt="UFT%202.0/14C7D047-32AD-4599-92B1-9F543471B4B2.png" src="UFT%202.0/14C7D047-32AD-4599-92B1-9F543471B4B2.png" /></p>
+<div class="section" id="id3">
+<h4>1.2. 业务需求<a class="headerlink" href="#id3" title="永久链接至标题"></a></h4>
+<p>经纪：支持证券、两融、期货、期权</p>
+<p>资管：完善的投资管理平台、丰富的投资策略、多样的交易方式</p>
+<p>风险管理：支持各政策、法规、风险内控要求，规避恶意或者误操作引起的投资风险。</p>
+<p>技术需求：</p>
+<ol class="simple">
+<li><p>低延时：尤其是期货，交易时间相对集中，交易指令相对密集</p></li>
+<li><p>高可用：异地多中心保障</p></li>
+<li><p>易扩展：实现指令、通道松耦合</p></li>
+<li><p>可反演：反演回顾业务流程</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>1.3 平台特性<a class="headerlink" href="#id4" title="永久链接至标题"></a></h3>
+<p><em>高效性：</em></p>
+<ol class="simple">
+<li><p>采用内存数据库</p></li>
+<li><p>组播插件使用穿透模式</p></li>
+<li><p>交易/查询核心分开部署</p></li>
+<li><p>关键节点支持冗余备份</p></li>
+<li><p>排队机支持日志反演</p></li>
+<li><p>系统节点通过可靠组播实现同步</p></li>
+<li><p>插件部署可拆可合</p></li>
+<li><p>部署方式多样</p></li>
+<li><p>基于恒生金融基础件平台开发</p></li>
+</ol>
+</div>
+<div class="section" id="id5">
+<h3>1.4 核心技术<a class="headerlink" href="#id5" title="永久链接至标题"></a></h3>
+<p><em>核心技术：</em></p>
+<ol class="simple">
+<li><p>内存数据库</p></li>
+<li><p>可靠组播</p></li>
+<li><p>排队机制</p></li>
+<li><p>双活机制</p></li>
+<li><p>开发套件</p></li>
+<li><p>插件化</p></li>
+</ol>
+</div>
+<div class="section" id="id6">
+<h3>1.5 平台架构<a class="headerlink" href="#id6" title="永久链接至标题"></a></h3>
+<p><img alt="UFT%202.0/7E5E95D7-206C-4E50-81AC-4C8970B28B89.png" src="UFT%202.0/7E5E95D7-206C-4E50-81AC-4C8970B28B89.png" /></p>
+<div class="section" id="id7">
+<h4>1.5.1 前置节点：<a class="headerlink" href="#id7" title="永久链接至标题"></a></h4>
+<ol class="simple">
+<li><p>管理前置</p></li>
+<li><p>交易前置</p></li>
+<li><p>行情前置</p></li>
+</ol>
+</div>
+<div class="section" id="id8">
+<h4>1.5.2 排队机<a class="headerlink" href="#id8" title="永久链接至标题"></a></h4>
+<ol class="simple">
+<li><p>排队机</p></li>
+<li><p>仲裁机代理</p></li>
+<li><p>仲裁机
+我们的排队机有主备之分</p></li>
+</ol>
+</div>
+<div class="section" id="id9">
+<h4>1.5.3 核心节点：<a class="headerlink" href="#id9" title="永久链接至标题"></a></h4>
+<ol class="simple">
+<li><p>查询核心</p></li>
+<li><p>交易核心
+内存数据库就是加载在核心节点里面的，我们看到架构图中包括了查询核心和交易核心。每个核心有自己的内存数据库，而且每个核心的数据库都是一致的，如果在交易过程中有查询请求过来的话。业务请求分为查询请求和交易请求。</p></li>
+</ol>
+</div>
+<div class="section" id="id10">
+<h4>1.5.4 辅助服务<a class="headerlink" href="#id10" title="永久链接至标题"></a></h4>
+<ol class="simple">
+<li><p>日志服务</p></li>
+<li><p>同步服务</p></li>
+<li><p>监控服务</p></li>
+<li><p>初始化服务</p></li>
+</ol>
+</div>
+<div class="section" id="id11">
+<h4>1.5.5 流水线介绍<a class="headerlink" href="#id11" title="永久链接至标题"></a></h4>
+<p>以期货极速交易为例：</p>
+<p>三类请求：</p>
+<ol class="simple">
+<li><p>投资者终端送入业务请求</p></li>
+<li><p>交易前置转发业务请求到排队机</p></li>
+<li><p>排队机转发业务请求到交易/查询核心</p></li>
+<li><p>交易/查询核心返回业务应答</p></li>
+<li><p>交易前置转发业务应答给投资者终端</p></li>
+<li><p>交易核心订单发给报盘机</p></li>
+<li><p>报盘机向交易所申报订单</p></li>
+<li><p>交易所反馈订单确认/撮合结果</p></li>
+<li><p>报盘机转发顶点确认/撮合结果</p></li>
+<li><p>排队机转发订单确认/撮合结果</p></li>
+<li><p>交易/查询核心发布订单确认/撮合结果</p></li>
+<li><p>交易前置返回订单确认/撮合结果</p></li>
+<li><p>交易行情信息发布</p></li>
+<li><p>行情服务器转发行情信息</p></li>
+<li><p>排队机转发布行情信息给交易/查询核心行情前置发布行情信息给投资者终端</p></li>
+</ol>
+<p><img alt="UFT%202.0/A4C3320A-6372-4E1D-BBF8-94B1B7E82126.png" src="UFT%202.0/A4C3320A-6372-4E1D-BBF8-94B1B7E82126.png" /></p>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>1. 6 各服务功能介绍<a class="headerlink" href="#id12" title="永久链接至标题"></a></h3>
+<ol class="simple">
+<li><p>初始化服务：保证数据初始化的准确性与及时性，主要负责日初把数据从柜台下载下来，然后组播给排队机</p></li>
+<li><p>前置机：接入层，接受esb请求，转化为组播包，发给排队机，接受从交易核心发送组播应答，转化为ESB包</p></li>
+<li><p>排队机：对接收的报文进行排序，支持主备模式防止单点故障，支持重演，</p></li>
+<li><p>仲裁机：作为总指挥决定被仲裁的插件的状态，</p></li>
+<li><p>交易核心：支持mSQL和Oracle数据库</p></li>
+<li><p>组播网关：接收核心组播数据，并转化为F2请求</p></li>
+<li><p>交易日志：将收到的组播包保存到日志中，用于排队机重演</p></li>
+</ol>
+</div>
+<div class="section" id="id13">
+<h3>1.7 部署方案<a class="headerlink" href="#id13" title="永久链接至标题"></a></h3>
+<p><img alt="UFT%202.0/6CDFC1E3-4C80-421B-BDBA-44B4143A565B.png" src="UFT%202.0/6CDFC1E3-4C80-421B-BDBA-44B4143A565B.png" /></p>
+<ol class="simple">
+<li><p>标准部署，适合交易场景</p></li>
+<li><p>极速部署，适合事前风控</p></li>
+<li><p>精简部署，适合适合清算场景</p></li>
+</ol>
+<p><img alt="UFT%202.0/80E2FEAC-57B9-4D0C-9578-45C51E067852.png" src="UFT%202.0/80E2FEAC-57B9-4D0C-9578-45C51E067852.png" /></p>
+<p>阴影部分：在实际部署过程中，交易核心与排队机都是在一起部署的，因为组播的穿透模式可以更快的传递消息</p>
+<p><img alt="UFT%202.0/A778D2D1-6D53-40E2-A516-23B744823D87.png" src="UFT%202.0/A778D2D1-6D53-40E2-A516-23B744823D87.png" /></p>
+<p>排队机只有一个，没有仲裁机。都是在风控上用。</p>
+<p><img alt="UFT%202.0/00646107-F537-4A1A-9CC2-B842C8E18C72.png" src="UFT%202.0/00646107-F537-4A1A-9CC2-B842C8E18C72.png" /></p>
+<p>更加精简，主要是为了做到极速清算。清算场景对数据安全性不是很高，所以不需要重演，组播等机制。甚至接入AR可以不要，其实我们的核心上也可以</p>
+<p><img alt="UFT%202.0/C17C2E1F-893D-4094-A998-BECA4F9342C9.png" src="UFT%202.0/C17C2E1F-893D-4094-A998-BECA4F9342C9.png" /></p>
+<p>主备机房通过同步插件进行同步数据，在UFT环境出现问题时就可以保持数据的同步不会丢失</p>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>2. UFT 2.0 安装和升级<a class="headerlink" href="#id14" title="永久链接至标题"></a></h2>
+<div class="section" id="id15">
+<h3>2.1 运行环境<a class="headerlink" href="#id15" title="永久链接至标题"></a></h3>
+<ul class="simple">
+<li><p>操作系统：64bit Linux（推荐RedHat 6.5）。6.5以上有一些bug</p></li>
+<li><p>内存：128G。</p></li>
+<li><p>硬盘：500G。 日志和组播数据保存在磁盘中。</p></li>
+<li><p>CPU：交易场景要求在3.2GHz，CPU个数不需要多。对于清算和风控对主频要求不高，CPU数量要多，需要多线程</p></li>
+<li><p>网卡：万兆网卡</p></li>
+<li><p>交换机：万兆网卡</p></li>
+</ul>
+</div>
+<div class="section" id="id16">
+<h3>2.2 环境设置<a class="headerlink" href="#id16" title="永久链接至标题"></a></h3>
+<ol class="simple">
+<li><p>调整Linux运行级别；将操作系统调整为命令行模式，我们所有的启动和关闭都是使用命令行操作的。</p></li>
+<li><p>防火墙设置：UFT 大量使用组播、F2、T2等，绑定了端口，需要对防火墙进行设置</p></li>
+<li><p>操作系统限制修改：排队机会使用大量的消息队列，需要调整系统对消息队列限制的宽松一些</p></li>
+<li><p>排队机共享内存大小修改：排队机的状态等数据都是在共享内存中，所以需要调大点。当服务器内存小于16G的时候，共享内存设置为17G，当服务器内存大于16G的时候，一般是80%+1G</p></li>
+<li><p>服务器性能优化：关闭无用的服务，CPU节能模式</p></li>
+</ol>
+</div>
+<div class="section" id="id17">
+<h3>2.3 交换机配置<a class="headerlink" href="#id17" title="永久链接至标题"></a></h3>
+<p><img alt="UFT%202.0/0F755648-FD89-4068-8A0E-564187812B8B.png" src="UFT%202.0/0F755648-FD89-4068-8A0E-564187812B8B.png" /></p>
+<p>在很多情况下，组播报文不可避免的要经过交换机，为了节省系统资源，设置交换机，将组播MAC地址和端口建立映射关系。一般来说网络工程师会很清楚</p>
+</div>
+<div class="section" id="id18">
+<h3>2.4 平台安装<a class="headerlink" href="#id18" title="永久链接至标题"></a></h3>
+<p>在研发中心网站下载</p>
+</div>
+</div>
+<div class="section" id="id19">
+<h2>3. 初始化插件<a class="headerlink" href="#id19" title="永久链接至标题"></a></h2>
+<div class="section" id="id20">
+<h3>3.1 插件介绍<a class="headerlink" href="#id20" title="永久链接至标题"></a></h3>
+<p>插件ID：hsuftini
+插件库：libfsc_uftinit.so
+插件类型：流水线插件</p>
+</div>
+<div class="section" id="id21">
+<h3>3.2 基本功能<a class="headerlink" href="#id21" title="永久链接至标题"></a></h3>
+<p>该插件用于给UFT初始化数据。</p>
+<p><img alt="UFT%202.0/436B4221-705C-4A0E-AA8E-E2F9984F0947.png" src="UFT%202.0/436B4221-705C-4A0E-AA8E-E2F9984F0947.png" /></p>
+</div>
+<div class="section" id="id22">
+<h3>3.3 功能号介绍<a class="headerlink" href="#id22" title="永久链接至标题"></a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2021, geoholf.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
